@@ -95,7 +95,7 @@ namespace WindowsFormsApplication1
 
         public void DeletePost(object sender, EventArgs e, Post post, User user)
         {
-            if (post.Creator != user && user.Username!="Admin")
+            if (post.Creator != user)
             {
                 MessageBox.Show("You can only delete your posts");
                 return;
