@@ -95,14 +95,14 @@ namespace WindowsFormsApplication1
 
         public void DeletePost(object sender, EventArgs e, Post post, User user)
         {
-            if (post.Creator != user)
+            if (post.Creator == user || (user!=null && user.Username=="Admin"))
             {
-                MessageBox.Show("You can only delete your posts");
-                return;
+                RepositoryController.DeletePost(post);
+                PostController.RemoveAllPostsFromForm();
+                PostController.ListAllPosts();               
             }
-            RepositoryController.DeletePost(post);
-            PostController.RemoveAllPostsFromForm();
-            PostController.ListAllPosts();
+            else
+                MessageBox.Show("You can only delete your posts");
         }
 
         public void EditPost(object sender, EventArgs e, Post post, User user)
